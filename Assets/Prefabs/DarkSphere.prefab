@@ -130,7 +130,7 @@ MonoBehaviour:
   spawnCount: 1
   spawnInterval: 0.3
   firstDelay: 0
-  normalSpawnInterval: 8
+  normalSpawnInterval: 12
 --- !u!114 &5154347345093076428
 MonoBehaviour:
   m_ObjectHideFlags: 0

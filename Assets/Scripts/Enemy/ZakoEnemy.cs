@@ -8,7 +8,7 @@ using UnityEngine;
 
 namespace Enemy
 {
-    public class ZakoEnemy : MonoBehaviour
+    public class ZakoEnemy : MonoBehaviour, IForceImpact
     {
         [SerializeField] private float damage;
         [SerializeField] private float moveSpeed;
@@ -19,6 +19,7 @@ namespace Enemy
         [SerializeField] private EnemyStatus status;
 
         private bool isCatch;
+        private float freezeTime;
 
         private void Start()
         {
@@ -85,6 +86,13 @@ namespace Enemy
             if (rig.isKinematic || isCatch || !IsGround())
                 return;
 
+            if (freezeTime > 0f)
+            {
+                freezeTime -= Time.fixedDeltaTime;
+                freezeTime = Mathf.Max(0f, freezeTime);
+                return;
+            }
+
             rig.linearVelocity = transform.right * moveSpeed;
         }
 
@@ -100,6 +108,13 @@ namespace Enemy
 
             PlayerStatus playerStatus = other.gameObject.GetComponent<PlayerStatus>();
             playerStatus.Damage(damage);
+        }
+
+        public void AddForce(Vector2 force, float freezeTime)
+        {
+            this.freezeTime = freezeTime;
+            rig.linearVelocity = Vector3.zero;
+            rig.AddForce(force, ForceMode.Impulse);
         }
     }
 }

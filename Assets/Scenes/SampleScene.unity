@@ -1749,18 +1749,6 @@ PrefabInstance:
       value: FlyingEnemy
       objectReference: {fileID: 0}
     - target: {fileID: 1696438639426700764, guid: 8abc3ce82cf61464f9da1fb6fafa2b41, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1696438639426700764, guid: 8abc3ce82cf61464f9da1fb6fafa2b41, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1696438639426700764, guid: 8abc3ce82cf61464f9da1fb6fafa2b41, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1696438639426700764, guid: 8abc3ce82cf61464f9da1fb6fafa2b41, type: 3}
       propertyPath: m_LocalPosition.x
       value: 138.25609
       objectReference: {fileID: 0}
@@ -2876,8 +2864,8 @@ Transform:
   m_GameObject: {fileID: 1526834400}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.9639, y: 0.0007, z: 0}
-  m_LocalScale: {x: 1.9279603, y: 0.81974393, z: 1}
+  m_LocalPosition: {x: 1.0836, y: 0.0007, z: 0}
+  m_LocalScale: {x: 2.167369, y: 0.81974393, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1711873274}
@@ -3108,9 +3096,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 091ec8206fe1675498cb7f9b7e0f2d1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  catchRadius: 2
-  catchPivotRadius: 1.5
-  accmulateTime: 1.3
+  catchRadius: 2.2
+  catchPivotRadius: 1.7
+  accmulateTime: 1
   playerRotation: {fileID: 1564578202}
   circleGauge: {fileID: 90034349}
 --- !u!114 &1564578202
@@ -3139,7 +3127,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 0
-  maxHp: 100
+  maxHp: 140
   gaugeSpeed: 3
   hpBar: {fileID: 2126361266}
   hpBackground: {fileID: 56342171}

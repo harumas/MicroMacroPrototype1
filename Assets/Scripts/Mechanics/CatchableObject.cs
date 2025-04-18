@@ -104,9 +104,9 @@ namespace Player
                 {
                     playerMovement.AddExternalForce(force);
                 }
-                else
+                else if (touchCollider.TryGetComponent(out IForceImpact forceImpact))
                 {
-                    rig.AddForce(force, ForceMode.Impulse);
+                    forceImpact.AddForce(force, 1f);
                 }
             }
 

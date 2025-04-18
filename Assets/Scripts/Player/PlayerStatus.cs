@@ -14,6 +14,7 @@ namespace Player
         [SerializeField] private Image hpBackground;
 
         private float defaultScale;
+        private Tween currentTween;
 
         private void Start()
         {
@@ -32,7 +33,13 @@ namespace Player
         {
             hp -= damage;
             hp = Mathf.Clamp(hp, 0, maxHp);
-            hpBackground.DOFade(0.3f, 0.2f).SetLoops(2, LoopType.Yoyo);
+            currentTween?.Kill();
+            
+            Color color = hpBackground.color;
+            color.a = 0f;
+            hpBackground.color = color;
+            
+            currentTween = hpBackground.DOFade(0.3f, 0.2f).SetLoops(2, LoopType.Yoyo);
 
             if (hp == 0)
             {
