@@ -48,18 +48,18 @@ namespace Enemy
 
             status.Kill();
 
-            await Task.Delay(500);
-            
-            // 非同期処理後にオブジェクトが存在していなかったら終了
-            if (gameObject == null)
-                return;
+            await Task.Delay(300, destroyCancellationToken);
 
             if (catchableObject.CurrentState == CatchableObject.State.Release)
             {
                 ExplodeDamage(scale);
             }
 
-            meshRenderer.material.DOFade(0f, 0.5f).OnComplete(() => { Destroy(gameObject); });
+            meshRenderer.material.DOFade(0f, 0.5f)
+                .OnComplete(() =>
+                {
+                    Destroy(gameObject);
+                });
         }
 
         private void ExplodeDamage(float releasedScale)

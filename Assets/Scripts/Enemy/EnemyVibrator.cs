@@ -16,7 +16,7 @@ namespace Enemy
 
         private void OnDamage()
         {
-            transform.DOShakePosition(vibrationDuration);
+            transform.DOShakePosition(vibrationDuration, 1f, 20);
         }
     }
 }

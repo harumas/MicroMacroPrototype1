@@ -101,7 +101,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 10
-  shootPower: 6
+  shootPower: 10
   shootInterval: 1.5
   detectRadius: 20
   bulletPrefab: {fileID: 8356215155619288307, guid: 9023b8e3b14476f4aa1011528fd422d5, type: 3}
@@ -142,7 +142,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 0
-  maxHp: 30
+  maxHp: 60
 --- !u!114 &6981592781811831239
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -14,7 +14,7 @@ namespace Player
 
         private void Start()
         {
-            lookInput = (catchVisualizer.position - transform.position).normalized;
+            lookInput = Vector2.right;
 
             InputEvent lookEvent = InputActionProvider.CreateEvent(ActionGuid.Player.Look);
             lookEvent.Performed += OnLook;

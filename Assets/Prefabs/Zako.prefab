@@ -154,7 +154,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 10
-  moveSpeed: -4
+  moveSpeed: -6
   rig: {fileID: 3627910373423570237}
   col: {fileID: 8098744959150484973}
   meshRenderer: {fileID: 7291020218166713832}
@@ -194,7 +194,7 @@ MonoBehaviour:
   scaleDuration: 0.4
   impactRadius: 1.5
   impactPower: 3
-  shootPower: 30
+  shootPower: 35
 --- !u!114 &6507447457554120235
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -10,7 +10,7 @@ namespace Gimmick
         {
             if (collider.gameObject.CompareTag(Tag.Player))
             {
-                Destroy(this);
+                Destroy(gameObject);
             }
         }
     }

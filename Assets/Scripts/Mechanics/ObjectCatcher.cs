@@ -14,6 +14,7 @@ namespace Player
         [SerializeField] private float catchPivotRadius;
         [SerializeField] private float accmulateTime = 1.5f;
         [SerializeField] private PlayerRotation playerRotation;
+        [SerializeField] private CircleGauge circleGauge;
 
         private CatchableObject currentObject;
         private float catchTime;
@@ -21,7 +22,7 @@ namespace Player
 
         public float CalculateScale()
         {
-            return Mathf.Min(1f, Mathf.Pow(Time.time - catchTime, 3) / accmulateTime);
+            return Mathf.Min(1f, Mathf.Pow(Time.time - catchTime, 2) / accmulateTime);
         }
 
         private void Start()
@@ -42,6 +43,8 @@ namespace Player
                 Vector3 position = (Vector3)playerRotation.LookInput * catchPivotRadius + transform.position;
                 currentObject.Sync(position);
             }
+
+            circleGauge.SetGauge(currentObject == null ? 0f : CalculateScale());
         }
 
         private void OnCatch(InputAction.CallbackContext ctx)
