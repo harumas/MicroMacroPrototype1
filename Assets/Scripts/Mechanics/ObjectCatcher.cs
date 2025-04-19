@@ -17,11 +17,13 @@ namespace Player
 
         private CatchableObject currentObject;
         private float catchTime;
+        private float shootTime;
         private bool isShooting;
 
         public float CalculateScale()
         {
-            return Mathf.Min(1f, Mathf.Pow(Time.time - catchTime, 2) / accmulateTime);
+            float currentTime = isShooting ? shootTime : Time.time;
+            return Mathf.Min(1f, (currentTime - catchTime) / accmulateTime);
         }
 
         private void Start()
@@ -66,6 +68,7 @@ namespace Player
             Vector3 direction = playerRotation.LookInput;
             currentObject.Shoot(direction);
             isShooting = true;
+            shootTime = Time.time;
         }
 
         private void Catch()

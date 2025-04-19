@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 2543424345219569300}
   m_Layer: 3
   m_Name: FlyingEnemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -104,6 +104,7 @@ MonoBehaviour:
   shootPower: 10
   shootInterval: 1.5
   detectRadius: 20
+  angleRange: 5
   bulletPrefab: {fileID: 8356215155619288307, guid: 9023b8e3b14476f4aa1011528fd422d5, type: 3}
   catchableObject: {fileID: 2625273669346769636}
   status: {fileID: 8761251657785543344}
@@ -156,7 +157,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   vibrationDuration: 0.5
-  enemyStatus: {fileID: 8761251657785543344}
+  status: {fileID: 8761251657785543344}
 --- !u!114 &2543424345219569300
 MonoBehaviour:
   m_ObjectHideFlags: 0

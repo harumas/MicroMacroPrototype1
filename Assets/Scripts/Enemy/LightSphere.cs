@@ -1,16 +1,17 @@
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Enemy
 {
     public class LightSphere : MonoBehaviour
     {
         [SerializeField] private float rotationSpeed = 1f;
-        [SerializeField] private EnemyStatus enemyStatus;
+        [FormerlySerializedAs("enemyStatus")] [SerializeField] private Status status;
 
         private void Start()
         {
-            enemyStatus.OnDeath += OnDeath;
+            status.OnDeath += OnDeath;
         }
 
         private void OnDeath()

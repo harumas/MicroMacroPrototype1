@@ -20,7 +20,7 @@ GameObject:
   - component: {fileID: -1542054925212886888}
   m_Layer: 3
   m_Name: Zako
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -208,7 +208,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   vibrationDuration: 0.5
-  enemyStatus: {fileID: 7988554230541260652}
+  status: {fileID: 7988554230541260652}
 --- !u!114 &-1542054925212886888
 MonoBehaviour:
   m_ObjectHideFlags: 0

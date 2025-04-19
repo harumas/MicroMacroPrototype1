@@ -35,7 +35,7 @@ namespace Enemy
             foreach (Collider target in colliders.AsSpan(0, count))
             {
                 if (target.gameObject == gameObject || // 自分自身を除外
-                    !target.gameObject.TryGetComponent(out EnemyStatus enemyStatus)) // EnemyStatusがない場合は除外
+                    !target.gameObject.TryGetComponent(out Status enemyStatus)) // EnemyStatusがない場合は除外
                     continue;
 
                 enemyStatus.Damage(damage);
@@ -59,10 +59,9 @@ namespace Enemy
             if (isCatch)
                 return;
 
-            if (other.gameObject.CompareTag(Tag.Player))
+            if (!other.gameObject.CompareTag(Tag.Enemy) && other.gameObject.TryGetComponent(out Status status))
             {
-                PlayerStatus playerStatus = other.gameObject.GetComponent<PlayerStatus>();
-                playerStatus.Damage(damage);
+                status.Damage(damage);
                 Destroy(gameObject);
             }
 

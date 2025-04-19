@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 4812817327575932817}
   m_Layer: 0
   m_Name: DarkSphere
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -124,7 +124,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27be8774db0fc9d489516255a8f04876, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyStatus: {fileID: 5154347345093076428}
+  status: {fileID: 5154347345093076428}
   enemyPrefab: {fileID: 3608159690401854731, guid: c263dcd3d24ffd64ba98668da2fde273, type: 3}
   activator: {fileID: 4812817327575932817}
   spawnCount: 1
@@ -158,7 +158,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   vibrationDuration: 0.5
-  enemyStatus: {fileID: 5154347345093076428}
+  status: {fileID: 5154347345093076428}
 --- !u!114 &4812817327575932817
 MonoBehaviour:
   m_ObjectHideFlags: 0

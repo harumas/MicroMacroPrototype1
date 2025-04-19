@@ -3,10 +3,13 @@ using UnityEngine;
 
 namespace Enemy
 {
-    public class EnemyStatus : MonoBehaviour
+    public class Status : MonoBehaviour
     {
         [SerializeField] private float hp;
         [SerializeField] private float maxHp = 100f;
+
+        public float Hp => hp;
+        public float MaxHp => maxHp;
 
         public event Action OnDeath;
         public event Action OnDamage;
@@ -30,7 +33,13 @@ namespace Enemy
                 OnDamage?.Invoke();
             }
         }
-        
+
+        public void SetMaxHp(float value)
+        {
+            maxHp = value;
+            hp = value;
+        }
+
         public void Kill()
         {
             hp = 0;

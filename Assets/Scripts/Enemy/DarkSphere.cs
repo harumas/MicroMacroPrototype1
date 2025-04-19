@@ -3,10 +3,11 @@ using System.Collections;
 using Enemy;
 using Gimmick;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class DarkSphere : MonoBehaviour
 {
-    [SerializeField] private EnemyStatus enemyStatus;
+    [FormerlySerializedAs("enemyStatus")] [SerializeField] private Status status;
     [SerializeField] private GameObject enemyPrefab;
     [SerializeField] private ObjectActivator activator;
     [SerializeField] private int spawnCount;
@@ -16,7 +17,7 @@ public class DarkSphere : MonoBehaviour
 
     private void Start()
     {
-        enemyStatus.OnDamage += () => StartCoroutine(Spawn());
+        status.OnDamage += () => StartCoroutine(Spawn());
         StartCoroutine(NormalSpawn());
     }
 

@@ -5,6 +5,7 @@ using Constants;
 using DG.Tweening;
 using Player;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 namespace Enemy
 {
@@ -16,7 +17,7 @@ namespace Enemy
         [SerializeField] private Collider col;
         [SerializeField] private Renderer meshRenderer;
         [SerializeField] private CatchableObject catchableObject;
-        [SerializeField] private EnemyStatus status;
+        [SerializeField] private Status status;
 
         private bool isCatch;
         private float freezeTime;
@@ -72,7 +73,7 @@ namespace Enemy
             foreach (Collider target in colliders.AsSpan(0, count))
             {
                 if (target.gameObject == gameObject || // 自分自身を除外
-                    !target.gameObject.TryGetComponent(out EnemyStatus enemyStatus)) // 敵ではない場合は除外
+                    !target.gameObject.TryGetComponent(out Status enemyStatus)) // 敵ではない場合は除外
                     continue;
 
                 enemyStatus.Damage(damage);
@@ -106,7 +107,7 @@ namespace Enemy
             if (!other.gameObject.CompareTag(Tag.Player) || isCatch)
                 return;
 
-            PlayerStatus playerStatus = other.gameObject.GetComponent<PlayerStatus>();
+            Status playerStatus = other.gameObject.GetComponent<Status>();
             playerStatus.Damage(damage);
         }
 

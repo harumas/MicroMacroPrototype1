@@ -1,4 +1,5 @@
 using DG.Tweening;
+using Enemy;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -7,8 +8,7 @@ namespace Player
 {
     public class PlayerStatus : MonoBehaviour
     {
-        [SerializeField] private float hp;
-        [SerializeField] private float maxHp = 100f;
+        [SerializeField] private Status status;
         [SerializeField] private float gaugeSpeed = 3f;
         [SerializeField] private RectTransform hpBar;
         [SerializeField] private Image hpBackground;
@@ -18,21 +18,19 @@ namespace Player
 
         private void Start()
         {
-            hp = maxHp;
             defaultScale = hpBar.localScale.x;
+            status.OnDamage += Damage;
         }
 
         private void Update()
         {
             Vector3 localScale = hpBar.localScale;
-            localScale.x = Mathf.Lerp(localScale.x, (hp / maxHp) * defaultScale, Time.deltaTime * gaugeSpeed);
+            localScale.x = Mathf.Lerp(localScale.x, (status.Hp / status.MaxHp) * defaultScale, Time.deltaTime * gaugeSpeed);
             hpBar.localScale = localScale;
         }
 
-        public void Damage(float damage)
+        public void Damage()
         {
-            hp -= damage;
-            hp = Mathf.Clamp(hp, 0, maxHp);
             currentTween?.Kill();
             
             Color color = hpBackground.color;
@@ -41,7 +39,7 @@ namespace Player
             
             currentTween = hpBackground.DOFade(0.3f, 0.2f).SetLoops(2, LoopType.Yoyo);
 
-            if (hp == 0)
+            if (status.Hp == 0)
             {
                 SceneManager.LoadScene(SceneManager.GetActiveScene().name);
             }

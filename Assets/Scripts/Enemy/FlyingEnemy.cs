@@ -4,6 +4,7 @@ using Constants;
 using DG.Tweening;
 using Player;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Enemy
 {
@@ -13,9 +14,10 @@ namespace Enemy
         [SerializeField] private float shootPower;
         [SerializeField] private float shootInterval;
         [SerializeField] private float detectRadius;
+        [SerializeField] private float angleRange;
         [SerializeField] private GameObject bulletPrefab;
         [SerializeField] private CatchableObject catchableObject;
-        [SerializeField] private EnemyStatus status;
+        [SerializeField] private Status status;
         [SerializeField] private Renderer bodyRenderer;
 
         private void Start()
@@ -46,7 +48,7 @@ namespace Enemy
             foreach (Collider target in colliders.AsSpan(0, count))
             {
                 if (target.gameObject == gameObject || // 自分自身を除外
-                    !target.gameObject.TryGetComponent(out EnemyStatus enemyStatus)) // EnemyStatusがない場合は除外
+                    !target.gameObject.TryGetComponent(out Status enemyStatus)) // EnemyStatusがない場合は除外
                     continue;
 
                 enemyStatus.Damage(damage);
@@ -65,7 +67,13 @@ namespace Enemy
                 if (!col.gameObject.CompareTag(Tag.Player))
                     continue;
 
+                // プレイヤーに向けてのベクトル
                 Vector3 targetDir = (col.transform.position - transform.position).normalized;
+                
+                // ランダムに拡散
+                targetDir = Quaternion.AngleAxis(Random.Range(-angleRange,angleRange), Vector3.forward) * targetDir;
+                
+                // 発射
                 Bullet bullet = Instantiate(bulletPrefab, transform.position + targetDir, Quaternion.identity).GetComponent<Bullet>();
                 bullet.Shoot(targetDir * shootPower);
             }
