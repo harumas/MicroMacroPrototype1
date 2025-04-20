@@ -104,7 +104,7 @@ MonoBehaviour:
   rb: {fileID: 7200789204039409400}
   col: {fileID: 5431861565910749692}
   state: 0
-  minScale: 0.5
+  minScale: 1
   maxScale: 5
   scaleDuration: 0.3
   impactRadius: 7
@@ -117,7 +117,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9131923809982795244}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 951fb86dd4ecf9747b2e1eaae3d572cd, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0

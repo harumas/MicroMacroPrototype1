@@ -125,11 +125,12 @@ namespace Player
 
         private void OnCollisionEnter(Collision other)
         {
-            if (state == State.Shoot && other.gameObject.CompareTag(Tag.Ground))
-            {
-                ObjectCatcher objectCatcher = GameObject.FindWithTag("Player").GetComponent<ObjectCatcher>();
-                Release(objectCatcher.CalculateScale());
-            }
+            // 勝手に起爆するのはナシ
+            // if (state == State.Shoot && other.gameObject.CompareTag(Tag.Ground))
+            // {
+            //     ObjectCatcher objectCatcher = GameObject.FindWithTag("Player").GetComponent<ObjectCatcher>();
+            //     Release(objectCatcher.CalculateScale());
+            // }
         }
     }
 }

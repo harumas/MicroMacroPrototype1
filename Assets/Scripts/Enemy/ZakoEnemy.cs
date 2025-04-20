@@ -13,6 +13,7 @@ namespace Enemy
     {
         [SerializeField] private float damage;
         [SerializeField] private float moveSpeed;
+        [SerializeField] private bool inverseDirection;
         [SerializeField] private Rigidbody rig;
         [SerializeField] private Collider col;
         [SerializeField] private Renderer meshRenderer;
@@ -21,6 +22,7 @@ namespace Enemy
 
         private bool isCatch;
         private float freezeTime;
+        private int direction = -1;
 
         private void Start()
         {
@@ -94,12 +96,22 @@ namespace Enemy
                 return;
             }
 
-            rig.linearVelocity = transform.right * moveSpeed;
+            rig.linearVelocity = transform.right * (moveSpeed * direction);
+
+            if (inverseDirection && IsWall())
+            {
+                direction = -direction;
+            }
         }
 
         private bool IsGround()
         {
             return Physics.Raycast(transform.position, Vector3.down, 1.05f);
+        }
+        
+        private bool IsWall()
+        {
+            return Physics.Raycast(transform.position, transform.right * direction, 1.05f);
         }
 
         private void OnCollisionEnter(Collision other)

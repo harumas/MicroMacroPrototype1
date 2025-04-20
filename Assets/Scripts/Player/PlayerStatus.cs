@@ -20,6 +20,7 @@ namespace Player
         {
             defaultScale = hpBar.localScale.x;
             status.OnDamage += Damage;
+            status.OnDeath += Damage;
         }
 
         private void Update()
