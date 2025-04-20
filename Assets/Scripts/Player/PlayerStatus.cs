@@ -1,6 +1,7 @@
 using DG.Tweening;
 using Enemy;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -28,6 +29,12 @@ namespace Player
             Vector3 localScale = hpBar.localScale;
             localScale.x = Mathf.Lerp(localScale.x, (status.Hp / status.MaxHp) * defaultScale, Time.deltaTime * gaugeSpeed);
             hpBar.localScale = localScale;
+
+            // デバッグ用リセット
+            if (Keyboard.current.rKey.wasPressedThisFrame)
+            {
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            }
         }
 
         public void Damage()
