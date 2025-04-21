@@ -11,7 +11,7 @@ namespace Gimmick
         {
             if (other.gameObject.CompareTag(Tag.Player) && other.gameObject.TryGetComponent(out Status status))
             {
-                status.Damage(999999999f);
+                status.Damage(1f);
             }
         }
     }

@@ -7,6 +7,7 @@ namespace Player
     public class CircleGauge : MonoBehaviour
     {
         [SerializeField] private Image circleImage;
+        [SerializeField] private Image background;
         [SerializeField] private Color[] gaugeColors;
         [SerializeField] private Transform playerTransform;
 
@@ -18,15 +19,22 @@ namespace Player
         private void Update()
         {
             Vector3 screenPoint = Camera.main.WorldToScreenPoint(playerTransform.position);
-            circleImage.transform.position = screenPoint + new Vector3(40f, -60f, 0f);
+            transform.position = screenPoint + new Vector3(40f, -60f, 0f);
         }
 
-        public void SetGauge(float scale)
+        public void SetGauge(float scale, float interval)
         {
-            circleImage.fillAmount = scale;
+            float realScale = scale + interval;
+            circleImage.fillAmount = realScale;
 
-            int index = Mathf.Max(0, Mathf.FloorToInt(gaugeColors.Length * scale) - 1);
+            int index = Mathf.FloorToInt((gaugeColors.Length - 1) * realScale);
             circleImage.color = gaugeColors[index];
+        }
+
+        public void ShowBackground(bool isShow)
+        {
+            circleImage.enabled = isShow;
+            background.enabled = isShow;
         }
     }
 }

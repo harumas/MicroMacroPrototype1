@@ -26,6 +26,7 @@ namespace CoreModule.Input
        public readonly Guid Sprint = new Guid("641cd816-40e6-41b4-8c3d-04687c349290");
        public readonly Guid Catch = new Guid("29fdafe4-7b61-4156-b48d-c2165bfe7196");
        public readonly Guid Shoot = new Guid("d5af9f8c-e182-4ddf-9710-156542d75d20");
+       public readonly Guid SwitchControl = new Guid("3fa1f6c8-fc5a-47b9-8c17-13f6268c5eb1");
     }
 
     public class UI

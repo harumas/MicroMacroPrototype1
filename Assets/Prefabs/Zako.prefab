@@ -191,7 +191,7 @@ MonoBehaviour:
   col: {fileID: 8098744959150484973}
   state: 0
   minScale: 1
-  maxScale: 5
+  maxScale: 7
   scaleDuration: 0.4
   impactRadius: 1.5
   impactPower: 3

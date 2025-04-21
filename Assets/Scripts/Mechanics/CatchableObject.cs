@@ -27,6 +27,7 @@ namespace Player
         [SerializeField] private float shootPower = 3f;
 
         private float defaultScale;
+        private float defaultMass;
         private Tween currentTween;
 
         public State CurrentState => state;
@@ -37,6 +38,7 @@ namespace Player
         private void Start()
         {
             defaultScale = transform.localScale.x;
+            defaultMass = rb.mass;
         }
 
         public void Catch()
@@ -78,6 +80,7 @@ namespace Player
             float realScale = (maxScale - defaultScale) * scale + defaultScale;
             currentTween?.Kill();
             currentTween = transform.DOScale(realScale, scaleDuration).SetEase(Ease.OutBack, 3f);
+            rb.mass = defaultMass * (scale + 1);
 
             ApplyImpact(scale);
 
