@@ -258,7 +258,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fc38405a7c21904f9fe2f4c59059a3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  antiGravityScale: 150
+  antiGravityScale: 200
   unscaleSpeed: 0.8
   catchableObject: {fileID: 2231328141178653179}
   rig: {fileID: 4663411829703834322}
+  lookTransform: {fileID: 0}
