@@ -27,6 +27,8 @@ namespace CoreModule.Input
        public readonly Guid Catch = new Guid("29fdafe4-7b61-4156-b48d-c2165bfe7196");
        public readonly Guid Shoot = new Guid("d5af9f8c-e182-4ddf-9710-156542d75d20");
        public readonly Guid SwitchControl = new Guid("3fa1f6c8-fc5a-47b9-8c17-13f6268c5eb1");
+       public readonly Guid ScaleShoot = new Guid("1e470ac5-21f9-4974-abcd-acad5c0272a7");
+       public readonly Guid UnScaleShoot = new Guid("6cd75806-8539-47bb-a437-23172be60491");
     }
 
     public class UI

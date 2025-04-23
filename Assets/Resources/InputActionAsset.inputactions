@@ -112,6 +112,24 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "ScaleShoot",
+                    "type": "Button",
+                    "id": "1e470ac5-21f9-4974-abcd-acad5c0272a7",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "UnScaleShoot",
+                    "type": "Button",
+                    "id": "6cd75806-8539-47bb-a437-23172be60491",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -541,6 +559,50 @@
                     "processors": "",
                     "groups": "",
                     "action": "SwitchControl",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d217a07a-1777-4ef5-ac77-d5751d8e32b4",
+                    "path": "<Gamepad>/rightTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ScaleShoot",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a44415f7-9172-41a4-be7f-7fd49944a3c4",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ScaleShoot",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4e11a44b-5678-4088-911c-89a1869476a8",
+                    "path": "<Gamepad>/leftTrigger",
+                    "interactions": "Press",
+                    "processors": "",
+                    "groups": "",
+                    "action": "UnScaleShoot",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "02430afa-e7de-4205-b824-25c041b907b1",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "UnScaleShoot",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
