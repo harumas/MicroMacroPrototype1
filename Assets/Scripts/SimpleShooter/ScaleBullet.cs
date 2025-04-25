@@ -1,19 +1,20 @@
-using System;
-using Constants;
-using DG.Tweening;
+using ScaleShooter;
 using UnityEngine;
 
-public class ScaleBullet : MonoBehaviour
+namespace SimpleShooter
 {
-    [SerializeField] private float scaleSize;
-    [SerializeField] private float scaleDuration;
-
-    private void OnCollisionEnter(Collision other)
+    public class ScaleBullet : MonoBehaviour
     {
-        if (!other.gameObject.TryGetComponent(out ScaleObject scaleObject))
-            return;
-        
-        scaleObject.Scale(scaleSize,scaleDuration);
-        Destroy(gameObject);
+        [SerializeField] private float scaleSize;
+        [SerializeField] private float scaleDuration;
+
+        private void OnCollisionEnter(Collision other)
+        {
+            if (!other.gameObject.TryGetComponent(out ScaleObject scaleObject))
+                return;
+
+            scaleObject.Scale(scaleSize, scaleDuration);
+            Destroy(gameObject);
+        }
     }
 }

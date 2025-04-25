@@ -13,6 +13,9 @@ namespace Player
         [SerializeField, Range(1, 360)] private float intervalDegree = 5;
         [SerializeField, Range(0f, 100f)] private float radius = 10;
         
+        public float Degree => degree;
+        public float Radius => radius;
+        
         public void RegenerateMesh(float degree, float radius)
         {
             this.degree = degree;

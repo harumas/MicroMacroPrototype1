@@ -54,7 +54,7 @@
                     "name": "Jump",
                     "type": "Button",
                     "id": "f1ba0d36-48eb-4cd5-b651-1c94a6531f70",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -126,6 +126,15 @@
                     "name": "UnScaleShoot",
                     "type": "Button",
                     "id": "6cd75806-8539-47bb-a437-23172be60491",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "SpotLight",
+                    "type": "Button",
+                    "id": "6817f2dd-4e72-466c-b858-d5af44ff837a",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -586,6 +595,17 @@
                 },
                 {
                     "name": "",
+                    "id": "937d8983-5b11-4062-be4b-0ec9939ae22a",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ScaleShoot",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "4e11a44b-5678-4088-911c-89a1869476a8",
                     "path": "<Gamepad>/leftTrigger",
                     "interactions": "Press",
@@ -603,6 +623,39 @@
                     "processors": "",
                     "groups": "",
                     "action": "UnScaleShoot",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8376ae0e-d44e-4d7d-8236-973f31318f85",
+                    "path": "<Gamepad>/buttonWest",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "UnScaleShoot",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "1041c3c7-3aa6-484d-a6f1-f35f7f866c27",
+                    "path": "<Gamepad>/buttonNorth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SpotLight",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3973170d-18ed-408d-8474-5a1ed83dffa0",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SpotLight",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

@@ -11,6 +11,6 @@ public class ScaleObject : MonoBehaviour
         float scaleX = transform.localScale.x;
         float nextScale = Mathf.Clamp(scaleX + size, minSize, maxSize);
 
-        transform.DOScale(nextScale, duration);
+        transform.DOScale(nextScale, duration).SetEase(Ease.OutBack, 3f);
     }
 }

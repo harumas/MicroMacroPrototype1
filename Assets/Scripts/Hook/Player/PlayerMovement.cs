@@ -15,11 +15,14 @@ namespace Player
         [SerializeField] private Vector2 externalDamping;
         [SerializeField] private float gravity;
         [SerializeField] private float jumpPower;
+        [SerializeField] private AnimationCurve additionalJumpPower;
 
         [SerializeField] private Rigidbody rb;
         [SerializeField] private Vector2 externalForce = Vector2.zero;
 
         private float moveInput = 0f;
+        private float jumpStartTime = 0f;
+        [SerializeField] private bool isJumping = false;
 
         private void Start()
         {
@@ -30,11 +33,14 @@ namespace Player
 
             InputEvent jumpEvent = InputActionProvider.CreateEvent(ActionGuid.Player.Jump);
             jumpEvent.Started += OnJump;
+            jumpEvent.Canceled += OnJumpEnd;
         }
 
         private void OnMove(InputAction.CallbackContext ctx)
         {
-            moveInput = ctx.ReadValue<Vector2>().x;
+            float x = ctx.ReadValue<Vector2>().x;
+            x = Mathf.Abs(x) > 0.3f ? x : 0f;
+            moveInput = x;
         }
 
         private void OnJump(InputAction.CallbackContext ctx)
@@ -45,6 +51,13 @@ namespace Player
             // 重力を初期化して力を加える
             rb.linearVelocity = new Vector3(rb.linearVelocity.x, 0f);
             rb.AddForce(new Vector3(0f, jumpPower), ForceMode.Impulse);
+            isJumping = true;
+            jumpStartTime = Time.time;
+        }
+
+        private void OnJumpEnd(InputAction.CallbackContext obj)
+        {
+            isJumping = false;
         }
 
         private bool IsGround()
@@ -61,6 +74,14 @@ namespace Player
             PerformMove(ref velocity);
             PerformDamping(ref velocity);
             PerformExternalForce();
+
+            if (isJumping)
+            {
+                // ジャンプ中の追加の力を加える
+                float jumpTime = Time.time - jumpStartTime;
+                float additionalPower = additionalJumpPower.Evaluate(jumpTime);
+                velocity += new Vector2(0f, additionalPower);
+            }
 
             rb.linearVelocity = velocity + externalForce;
         }
