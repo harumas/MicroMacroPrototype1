@@ -30,6 +30,9 @@ namespace CoreModule.Input
        public readonly Guid ScaleShoot = new Guid("1e470ac5-21f9-4974-abcd-acad5c0272a7");
        public readonly Guid UnScaleShoot = new Guid("6cd75806-8539-47bb-a437-23172be60491");
        public readonly Guid SpotLight = new Guid("6817f2dd-4e72-466c-b858-d5af44ff837a");
+       public readonly Guid Eat = new Guid("6bda0d21-b497-4273-a31f-d09bd468ff20");
+       public readonly Guid ToBig = new Guid("7f91dae4-d19a-4626-9655-57350cd612f2");
+       public readonly Guid EaterShoot = new Guid("aa36d321-cb6d-4fb0-beff-6ce961527e79");
     }
 
     public class UI

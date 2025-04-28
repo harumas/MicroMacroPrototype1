@@ -7,9 +7,11 @@ namespace Enemy
     {
         [SerializeField] private float hp;
         [SerializeField] private float maxHp = 100f;
+        [SerializeField] private float noDamageTime;
 
         public float Hp => hp;
         public float MaxHp => maxHp;
+        private float lastDamageTime;
 
         public event Action OnDeath;
         public event Action OnDamage;
@@ -21,8 +23,14 @@ namespace Enemy
 
         public void Damage(float damage)
         {
+            if (Time.time - lastDamageTime < noDamageTime)
+            {
+                return;
+            }
+
             hp -= damage;
             hp = Mathf.Clamp(hp, 0, maxHp);
+            lastDamageTime = Time.time;
 
             if (hp == 0)
             {

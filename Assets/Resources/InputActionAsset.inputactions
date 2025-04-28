@@ -139,6 +139,33 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Eat",
+                    "type": "Button",
+                    "id": "6bda0d21-b497-4273-a31f-d09bd468ff20",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "ToBig",
+                    "type": "Button",
+                    "id": "7f91dae4-d19a-4626-9655-57350cd612f2",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "EaterShoot",
+                    "type": "Button",
+                    "id": "aa36d321-cb6d-4fb0-beff-6ce961527e79",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -595,17 +622,6 @@
                 },
                 {
                     "name": "",
-                    "id": "937d8983-5b11-4062-be4b-0ec9939ae22a",
-                    "path": "<Gamepad>/buttonEast",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "ScaleShoot",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "4e11a44b-5678-4088-911c-89a1869476a8",
                     "path": "<Gamepad>/leftTrigger",
                     "interactions": "Press",
@@ -619,17 +635,6 @@
                     "name": "",
                     "id": "02430afa-e7de-4205-b824-25c041b907b1",
                     "path": "<Mouse>/rightButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "UnScaleShoot",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "8376ae0e-d44e-4d7d-8236-973f31318f85",
-                    "path": "<Gamepad>/buttonWest",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -656,6 +661,39 @@
                     "processors": "",
                     "groups": "",
                     "action": "SpotLight",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "07962040-a4ba-4b07-aa1b-045fe3d06e06",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Eat",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "36311d20-5fcc-45e9-990c-20435f2ba0e1",
+                    "path": "<Gamepad>/leftTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ToBig",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "330b3e52-aa28-4b96-89c6-feee8032b016",
+                    "path": "<Gamepad>/rightTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "EaterShoot",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
