@@ -1,9 +1,11 @@
-﻿namespace Swallow
+﻿using UnityEngine;
+
+namespace Swallow
 {
     public interface IAllyItem
     {
-        void Enable();
+        void Initialize();
+        void Use(bool isBig, Vector3 direction);
         void Disable();
-        void AddForce();
     }
 }

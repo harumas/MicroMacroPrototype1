@@ -12,6 +12,7 @@ namespace Swallow
     {
         [SerializeField] private Transform eatPivot;
         [SerializeField] private Transform itemPivot;
+        [SerializeField] private ScalePlayer scalePlayer;
         [SerializeField] private List<GameObject> items;
         [SerializeField] private GameObject[] eatItemPrefabs;
         [SerializeField] private int capacity = 3;
@@ -26,6 +27,20 @@ namespace Swallow
         {
             InputEvent eatEvent = InputActionProvider.CreateEvent(ActionGuid.Player.Eat);
             eatEvent.Started += OnEat;
+
+            InputEvent useEvent = InputActionProvider.CreateEvent(ActionGuid.Player.EaterShoot);
+            useEvent.Started += OnShoot;
+        }
+
+        private void OnShoot(InputAction.CallbackContext _)
+        {
+            if (items.Count == 0)
+                return;
+
+            bool isBig = scalePlayer.ScaleState == ScaleState.Big;
+            items[0].GetComponent<IAllyItem>().Use(isBig, transform.forward);
+            items[0].transform.position = transform.position + transform.forward * (transform.localScale.x + 1f);
+            items.RemoveAt(0);
         }
 
         private void Update()
@@ -33,8 +48,10 @@ namespace Swallow
             for (int i = 0; i < items.Count; i++)
             {
                 items[i].transform.position = Vector3.Slerp(items[i].transform.position,
-                    itemPivot.position + (-transform.forward * (itemInterval * i + offset)),
+                    itemPivot.position + (-transform.forward * (itemInterval * i + offset + transform.localScale.z * 0.5f)),
                     Time.deltaTime * 4f);
+
+                items[i].transform.LookAt(items[i].transform.position + transform.forward);
             }
         }
 
@@ -57,7 +74,10 @@ namespace Swallow
                 if (!col.TryGetComponent(out EatableItem item))
                     continue;
 
-                items.Add(Instantiate(eatItemPrefabs[item.ItemId], eatPivot.position, Quaternion.identity));
+                GameObject obj = Instantiate(eatItemPrefabs[item.ItemId], eatPivot.position, Quaternion.identity);
+                obj.GetComponent<IAllyItem>().Initialize();
+                items.Add(obj);
+
                 Destroy(col.gameObject);
                 break;
             }

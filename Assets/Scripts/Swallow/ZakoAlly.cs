@@ -9,18 +9,18 @@ using UnityEngine.VFX;
 
 namespace Swallow
 {
-    public class ZakoAlly : MonoBehaviour
+    public class ZakoAlly : MonoBehaviour, IAllyItem
     {
         [SerializeField] private NavMeshAgent agent;
+        [SerializeField] private Rigidbody rig;
         [SerializeField] private Status myStatus;
         [SerializeField] private VisualEffect explosionEffect;
-        [SerializeField] private float damageInterval = 1f;
-        [SerializeField] private float damageRadius = 2f;
-        [SerializeField] private float damage = 20f;
         [SerializeField] private Collider collider;
+        [SerializeField] private float detectRadius;
 
-        private bool isAlive = true;
-        private Transform currentTarget;
+        private bool isAlive;
+        private bool isEnabled;
+        private Transform enemy;
 
         private void Start()
         {
@@ -36,75 +36,94 @@ namespace Swallow
                 Destroy(gameObject);
             };
 
-            DamageLoop();
+            Disable();
         }
 
         private void Update()
         {
-            if (currentTarget != null)
+            if (agent.enabled && enemy != null)
             {
-                agent.SetDestination(currentTarget.transform.position);
+                agent.SetDestination(enemy.position);
             }
+
+            DetectEnemies();
         }
-
-        private async void DamageLoop()
+        
+        private void OnCollisionStay(Collision other)
         {
-            while (isAlive)
+            if (other.gameObject.CompareTag(Tag.Enemy) && isAlive)
             {
-                Collider[] colliders = ArrayPool<Collider>.Shared.Rent(16);
-                int count = Physics.OverlapSphereNonAlloc(transform.position, transform.localScale.x + damageRadius, colliders);
-
-                for (var i = 0; i < count; i++)
+                if (other.gameObject.TryGetComponent(out Status status))
                 {
-                    var col = colliders[i];
-                    if (!col.gameObject.CompareTag(Tag.Enemy))
-                        continue;
-
-                    col.GetComponent<Status>().Damage(damage);
-                    break;
-                }
-
-                ArrayPool<Collider>.Shared.Return(colliders);
-
-                await Task.Delay(TimeSpan.FromSeconds(damageInterval), destroyCancellationToken);
-
-                Vector3 diff = currentTarget.position - transform.position;
-
-                if (Vector3.Angle(transform.forward, diff) > 20f)
-                {
-                    await Task.Delay(1, destroyCancellationToken);
+                    status.Damage(20);
                 }
             }
         }
 
-        private async void DetectEnemies()
+        private void DetectEnemies()
         {
-            while (isAlive)
+            if (enemy != null)
+                return;
+
+            Collider[] colliders = ArrayPool<Collider>.Shared.Rent(16);
+            int count = Physics.OverlapSphereNonAlloc(transform.position, detectRadius, colliders);
+
+            if (count == 0)
+                return;
+
+            for (var i = 0; i < count; i++)
             {
-                Collider[] colliders = ArrayPool<Collider>.Shared.Rent(16);
-                int count = Physics.OverlapSphereNonAlloc(transform.position, transform.localScale.x + damageRadius, colliders);
+                if (!colliders[i].CompareTag(Tag.Enemy))
+                    continue;
 
-                for (var i = 0; i < count; i++)
-                {
-                    var col = colliders[i];
-                    if (!col.gameObject.CompareTag(Tag.Enemy))
-                        continue;
-
-                    col.GetComponent<Status>().Damage(damage);
-                    break;
-                }
-
-                ArrayPool<Collider>.Shared.Return(colliders);
-
-                await Task.Delay(TimeSpan.FromSeconds(damageInterval), destroyCancellationToken);
-
-                Vector3 diff = currentTarget.position - transform.position;
-
-                if (Vector3.Angle(transform.forward, diff) > 20f)
-                {
-                    await Task.Delay(1, destroyCancellationToken);
-                }
+                enemy = colliders[i].transform;
+                break;
             }
+
+            ArrayPool<Collider>.Shared.Return(colliders);
+        }
+
+        private void OnCollisionEnter(Collision other)
+        {
+            if (!isEnabled && other.gameObject.CompareTag(Tag.Ground))
+            {
+                Enable();
+            }
+        }
+
+        public void Enable()
+        {
+            agent.enabled = true;
+            isAlive = true;
+            isEnabled = true;
+            rig.isKinematic = true;
+            rig.useGravity = false;
+        }
+
+        public void Initialize()
+        {
+            transform.localScale = Vector3.one * 0.5f;
+        }
+
+        public void Use(bool isBig, Vector3 direction)
+        {
+            if (isBig)
+            {
+                agent.speed = 1f;
+            }
+            
+            transform.localScale = Vector3.one * (isBig ? 2f : 1f);
+            collider.enabled = true;
+            rig.isKinematic = false;
+            rig.useGravity = true;
+            rig.AddForce(direction * 12f + Vector3.up * 12f, ForceMode.VelocityChange);
+        }
+
+        public void Disable()
+        {
+            agent.enabled = false;
+            collider.enabled = false;
+            rig.isKinematic = true;
         }
     }
 }
