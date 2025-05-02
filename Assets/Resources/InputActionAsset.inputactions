@@ -166,6 +166,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "ResetBody",
+                    "type": "Button",
+                    "id": "759c3fb1-ea3c-4f5e-8e97-2ce2de4185d8",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -727,6 +736,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "EaterShoot",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5a9abd3a-9953-4995-834d-74a71d056597",
+                    "path": "<Gamepad>/buttonWest",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ResetBody",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6052a93a-067a-4ab5-99e9-e1b1f1dfb7cc",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ResetBody",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

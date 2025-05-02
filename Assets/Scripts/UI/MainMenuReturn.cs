@@ -13,5 +13,11 @@ public class MainMenuReturn : MonoBehaviour
             InputActionProvider.ClearEvents();
             SceneManager.LoadScene("MainMenu");
         }
+
+        if (Keyboard.current.rKey.wasPressedThisFrame)
+        {
+            Debug.Log("Retrying the game...");
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
     }
 }

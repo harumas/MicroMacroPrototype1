@@ -33,6 +33,7 @@ namespace CoreModule.Input
        public readonly Guid Eat = new Guid("6bda0d21-b497-4273-a31f-d09bd468ff20");
        public readonly Guid ToBig = new Guid("7f91dae4-d19a-4626-9655-57350cd612f2");
        public readonly Guid EaterShoot = new Guid("aa36d321-cb6d-4fb0-beff-6ce961527e79");
+       public readonly Guid ResetBody = new Guid("759c3fb1-ea3c-4f5e-8e97-2ce2de4185d8");
     }
 
     public class UI

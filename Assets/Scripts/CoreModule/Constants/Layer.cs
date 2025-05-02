@@ -13,6 +13,7 @@ namespace Constants
 		public const int Catchable = 3;
 		public const int Water = 4;
 		public const int UI = 5;
+		public const int Flyer = 6;
 		
 		public sealed class Mask
 		{
@@ -22,6 +23,7 @@ namespace Constants
 			public const int Catchable = 8;
 			public const int Water = 16;
 			public const int UI = 32;
+			public const int Flyer = 64;
 		}
 	}
 }

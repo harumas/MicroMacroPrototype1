@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/Takanashi.unity
+    guid: 13f349277fa38434ca634aa775ba7b66
+  - enabled: 1
     path: Assets/Scenes/MainMenu.unity
     guid: 3211ab2e50dc2ab44a53bc7980e5c49e
   - enabled: 1
