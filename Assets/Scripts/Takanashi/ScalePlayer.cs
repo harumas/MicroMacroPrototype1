@@ -96,7 +96,7 @@ namespace Takanashi
                     cinemachineFollow.FollowOffset.x,
                     cinemachineFollow.FollowOffset.y,
                     x),
-                defaultCameraOffset - (currentScale - defaultScale) * 0.9f,
+                defaultCameraOffset - (currentScale - defaultScale) * 1.1f,
                 scaleDuration);
         }
 
