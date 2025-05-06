@@ -3,7 +3,7 @@ using DG.Tweening;
 using Enemy;
 using UnityEngine;
 
-namespace Takanashi
+namespace TakanashiExtended
 {
     public class ObjectVibrator : MonoBehaviour
     {

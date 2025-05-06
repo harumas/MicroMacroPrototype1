@@ -2,7 +2,7 @@ using System;
 using Enemy;
 using UnityEngine;
 
-namespace Takanashi
+namespace TakanashiExtended
 {
     public class PlayerAttacker : MonoBehaviour
     {
