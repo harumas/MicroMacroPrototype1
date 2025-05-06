@@ -18,5 +18,6 @@ namespace Constants
 		public static readonly TagHandle Ground = TagHandle.GetExistingTag("Ground");
 		public static readonly TagHandle Enemy = TagHandle.GetExistingTag("Enemy");
 		public static readonly TagHandle Wall = TagHandle.GetExistingTag("Wall");
+		public static readonly TagHandle Ball = TagHandle.GetExistingTag("Ball");
 	}
 }

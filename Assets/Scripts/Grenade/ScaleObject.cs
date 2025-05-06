@@ -13,7 +13,7 @@ namespace Grenade
         [SerializeField] private float impactPower;
         [SerializeField] private float impactRadius = 1.5f;
         [SerializeField] private float scalePower_Y = 1.5f;
-
+        
         public void Scale(float size, float duration, bool charged)
         {
             float scaleX = transform.localScale.x;
@@ -84,5 +84,6 @@ namespace Grenade
             transform.localScale = newScale;
             transform.localPosition = resultPos;
         }
+        
     }
 }
