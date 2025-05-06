@@ -13,10 +13,10 @@ GameObject:
   - component: {fileID: 8568992843071768510}
   - component: {fileID: 8926628300271325552}
   - component: {fileID: 6969068090755560606}
-  - component: {fileID: 8320379892285852184}
-  - component: {fileID: 5536746920869621247}
-  m_Layer: 0
-  m_Name: UnScaleBullet
+  - component: {fileID: 5093402446396972797}
+  - component: {fileID: 413742405216759319}
+  m_Layer: 8
+  m_Name: UnScaleGrenade
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -97,7 +97,7 @@ SphereCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7059556355601541438}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 1b8ff22182c18b141a7e45aa5ec466d4, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -105,7 +105,7 @@ SphereCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -119,7 +119,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7059556355601541438}
   serializedVersion: 4
-  m_Mass: 1
+  m_Mass: 0.01
   m_Drag: 0
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -133,12 +133,12 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 0
+  m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 120
   m_CollisionDetection: 2
---- !u!114 &8320379892285852184
+--- !u!114 &5093402446396972797
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -147,12 +147,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 7059556355601541438}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e178a6d3464144ac91ae1d7a90a85fa3, type: 3}
+  m_Script: {fileID: 11500000, guid: 81b27cc1192ae354fb5063e214a08f05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   scaleSize: -1
   scaleDuration: 0.4
---- !u!114 &5536746920869621247
+  deleteTime: 1
+--- !u!114 &413742405216759319
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -164,4 +165,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e91b69c107391fa4c9939ad090d38735, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scalePower: {x: 0, y: 0, z: 0}
+  scalePower: {x: 3, y: 3.5, z: 3}

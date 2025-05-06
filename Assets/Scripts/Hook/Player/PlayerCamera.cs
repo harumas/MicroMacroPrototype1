@@ -19,6 +19,7 @@ namespace Player
         {
             Vector3 position = transform.position;
             position.x = Mathf.Lerp(transform.position.x, target.position.x + offset.x, damping);
+            position.y = Mathf.Lerp(transform.position.y, target.position.y + offset.y, damping);
             transform.position = position;
         }
     }
