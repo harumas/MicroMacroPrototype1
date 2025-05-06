@@ -14,8 +14,9 @@ namespace Takanashi
         [SerializeField] private float scaleFactor = 2f;
         [SerializeField] private float scaleDuration = 0.5f;
         [SerializeField] private float bouncePower = 0.5f;
-        [SerializeField] private float minBounce = 4f;
+        [SerializeField] private AnimationCurve minBounce;
         [SerializeField] private float unScaleFactor = 0.5f;
+        [SerializeField] private int maxMoveCount = 3;
         [SerializeField] private PlayerMovement playerMovement;
         [SerializeField] private CinemachineFollow cinemachineFollow;
 
@@ -25,6 +26,7 @@ namespace Takanashi
         private Tween currentCameraTween;
         private bool isBigScaling;
         private float defaultCameraOffset;
+        private int moveStep;
 
         private void Start()
         {
@@ -56,7 +58,13 @@ namespace Takanashi
 
             if (currentScale > minScale)
             {
-                playerMovement.AddExternalForce(playerMovement.ExternalForce * 0.5f + playerMovement.ExternalForce.normalized * minBounce);
+                if (moveStep <= maxMoveCount)
+                {
+                    float power = playerMovement.ExternalForce.magnitude;
+                    playerMovement.AddExternalForce(playerMovement.ExternalForce * minBounce.Evaluate(power));
+                    moveStep++;
+                }
+
                 DoScale();
             }
         }
@@ -73,7 +81,8 @@ namespace Takanashi
 
             if (targetScale > defaultScale)
             {
-                playerMovement.AddExternalForce(playerMovement.ExternalForce * 0.5f + playerMovement.ExternalForce.normalized * minBounce);
+                float power = playerMovement.ExternalForce.magnitude;
+                playerMovement.AddExternalForce(playerMovement.ExternalForce * minBounce.Evaluate(power));
             }
             else
             {
@@ -106,6 +115,7 @@ namespace Takanashi
             {
                 playerMovement.AddExternalForce(other.GetContact(0).normal * bouncePower);
                 isBigScaling = false;
+                moveStep = 0;
             }
         }
 

@@ -24,6 +24,12 @@ EditorBuildSettings:
     path: Assets/Scenes/SimpleShooter.unity
     guid: e4b3058964cdf8c4facc8dda8be2dca6
   - enabled: 1
+    path: Assets/Scenes/Takanashi.unity
+    guid: b01c1f1d4f11d4e4984e8a52aa0478b5
+  - enabled: 1
+    path: Assets/Scenes/Swallow.unity
+    guid: 6a88bec05b05f614f9d1d4ef02b7bea0
+  - enabled: 1
     path: Assets/Scenes/SpotLight.unity
     guid: 1971a9d0a1947c541ac956011a28c66c
   m_configObjects:

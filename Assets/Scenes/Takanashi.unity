@@ -2471,13 +2471,37 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   minScale: 0.5
-  scaleFactor: 2
-  scaleDuration: 0.5
-  bouncePower: 0.5
-  minBounce: 4
-  unScaleFactor: 0.5
-  playerMovement: {fileID: 0}
-  cinemachineFollow: {fileID: 0}
+  scaleFactor: 2.5
+  scaleDuration: 0.2
+  bouncePower: 10
+  minBounce:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1.3
+      inSlope: 0.013604356
+      outSlope: 0.013604356
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.072217695
+    - serializedVersion: 3
+      time: 10
+      value: 1
+      inSlope: 0.024618575
+      outSlope: 0.024618575
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.22741094
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  unScaleFactor: 0.1
+  maxMoveCount: 3
+  playerMovement: {fileID: 1658915875}
+  cinemachineFollow: {fileID: 947651684}
 --- !u!114 &1658915875
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2490,12 +2514,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc3be72e48f1305478ac102bd56b5bd0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveAccel: 0
-  maxSpeed: 0
-  damping: 0
-  externalDamping: {x: 0, y: 0}
-  gravity: 0
-  rb: {fileID: 0}
+  moveAccel: 6
+  maxSpeed: 20
+  damping: 0.7
+  externalDamping: {x: 0.9, y: 0.9}
+  gravity: -2.5
+  rb: {fileID: 1658915872}
   externalForce: {x: 0, y: 0}
 --- !u!1 &1939441659
 GameObject:
