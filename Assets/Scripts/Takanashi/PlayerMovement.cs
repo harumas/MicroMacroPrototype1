@@ -1,4 +1,6 @@
+using System;
 using CoreModule.Input;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -6,80 +8,91 @@ namespace Takanashi
 {
     public class PlayerMovement : MonoBehaviour
     {
+        [SerializeField] private Rigidbody rig;
+        [SerializeField] private ScalePlayer scalePlayer;
+        [SerializeField] private float damping;
         [SerializeField] private float moveAccel;
         [SerializeField] private float maxSpeed;
-        [SerializeField] private float damping;
-        [SerializeField] private Vector2 externalDamping;
         [SerializeField] private float gravity;
 
-        [SerializeField] private Rigidbody rb;
-        [SerializeField] private Vector2 externalForce = Vector2.zero;
+        private Vector2 limitedForce;
+        private Vector2 moveInput;
+        private Vector3 externalForce;
+        private bool isSonicSpeed;
+        private float scalingTime;
+        private Tween forceTween;
 
-        private float moveInput = 0f;
-        public Vector2 ExternalForce => externalForce;
+        public bool IsMoving;
 
         private void Start()
         {
+            InputEvent unScaleShoot = InputActionProvider.CreateEvent(ActionGuid.Player.Jump);
+            unScaleShoot.Canceled += OnUnScaleShoot;
+
             InputEvent moveEvent = InputActionProvider.CreateEvent(ActionGuid.Player.Move);
             moveEvent.Started += OnMove;
             moveEvent.Performed += OnMove;
             moveEvent.Canceled += OnMove;
         }
 
-        private void OnMove(InputAction.CallbackContext ctx)
+        private void OnUnScaleShoot(InputAction.CallbackContext _)
         {
-            float x = ctx.ReadValue<Vector2>().x;
-            x = Mathf.Abs(x) > 0.3f ? x : 0f;
-            moveInput = x;
+            scalingTime = 0f;
         }
 
+        public void SetLimitedForce(Vector2 force, float time)
+        {
+            limitedForce = force;
+            scalingTime = time;
+            IsMoving = true;
+        }
 
         private void FixedUpdate()
         {
-            Vector2 velocity = rb.linearVelocity;
-            velocity.y += gravity; // 重力を加算
+            Vector3 velocity = rig.linearVelocity;
 
-            PerformMove(ref velocity);
-            PerformDamping(ref velocity);
-            PerformExternalForce();
-
-            rb.linearVelocity = velocity + externalForce;
-        }
-
-        private void PerformMove(ref Vector2 velocity)
-        {
-            // x方向に力を与える
-            float vx = moveInput * moveAccel;
-
-            // Rigidbodyの速度を設定する
-            velocity.x += vx;
-            velocity.x = Mathf.Clamp(velocity.x, -maxSpeed, maxSpeed);
-        }
-
-        private void PerformDamping(ref Vector2 velocity)
-        {
-            // 速度を減少させる
-            velocity.x *= damping;
-        }
-
-        private void PerformExternalForce()
-        {
-            externalForce *= externalDamping;
-
-            if (externalForce.sqrMagnitude < 0.01f)
+            if (limitedForce.sqrMagnitude > 0f && scalingTime <= 0f)
             {
-                externalForce = Vector3.zero;
+                limitedForce *= damping;
+
+                if (limitedForce.sqrMagnitude <= 0.1f)
+                {
+                    limitedForce = Vector2.zero;
+                    IsMoving = false;
+                }
             }
+
+            if (limitedForce.sqrMagnitude > 0f && scalePlayer.EvaluateStep() > 0f)
+            {
+                velocity = limitedForce;
+            }
+            else
+            {
+                PerformMove(ref velocity);
+            }
+
+            velocity += Vector3.up * gravity;
+            velocity += externalForce;
+
+            velocity.x *= damping;
+            externalForce *= damping;
+            scalingTime -= Time.fixedDeltaTime;
+            rig.linearVelocity = velocity;
         }
 
-        public void AddExternalForce(Vector2 force)
+        private void OnMove(InputAction.CallbackContext ctx)
         {
-            externalForce += force;
+            moveInput = ctx.ReadValue<Vector2>();
         }
 
-        private void OnDestroy()
+        private void PerformMove(ref Vector3 velocity)
         {
-            InputActionProvider.ClearEvents();
+            velocity.x = Mathf.Min(maxSpeed, velocity.x + moveInput.x * moveAccel);
+        }
+
+        public void AddExternalForce(Vector3 bouncePower)
+        {
+            externalForce += bouncePower;
         }
     }
 }
